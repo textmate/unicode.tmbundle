@@ -5,20 +5,13 @@
 import sys
 import os
 import codecs
-import unicodedata
 import itertools
 from UniTools import *
-# import time
 
 sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 sys.stdin  = codecs.getreader('utf-8')(sys.stdin)
 
 bundleLibPath = os.environ["TM_BUNDLE_SUPPORT"] + "/lib/"
-
-# ts = time.time()
-text = list(codepoints(sys.stdin.read()))
-
-if not text: sys.exit(200)
 
 class SeqDict(dict):
     """Dict that remembers the insertion order."""
@@ -41,124 +34,189 @@ class SeqDict(dict):
 
 
 
-print """<html>
+HEADER_HTML = """<html>
 <head><title>Character Inventory</title>
-<script type='text/javascript'>//<![CDATA[
-//]]></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type='text/css'>
-th {
-font-size:8pt;
-text-align:left;
-}
-table {border:1px solid #silver;border-collapse: collapse;}
-td {padding:1mm;}
-.a {
-text-align:center;
-}
-.tr1 {
-background-color:SandyBrown;
-}
-.tr2 {
-background-color:Cornsilk;
-}
-.b {
-text-align:center;
-cursor:pointer;
-}
+
+    body {
+        font-size: 12pt;
+    }
+    
+    th {
+        text-align:left;
+        padding: 1px 3px;
+        background-color: #aaa;
+        color: #fff;
+    }
+
+    table {
+        border:1px solid #silver;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    col {
+        width: 15%;
+    }
+
+    col.name {
+        width: 40%;
+    }
+
+    td {
+        padding: 1px 3px;
+    }
+
+    tr {
+        height: 2em;
+    }
+    .a {
+        text-align:center;
+    }
+
+    .tr1 {
+        background-color:#ddd;
+    }
+
+    .tr2 {
+        background-color:#bbb;
+    }
+
+    .b {
+        text-align:center;
+        cursor:pointer;
+    }
+
+    table#character-inventory {
+        width: auto;
+        margin: auto;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    table#character-inventory td {
+        border: solid black 1px;
+        width: 2em;
+        height: 2em;
+    }
 </style>
 </head>
 <body>
 """
 
-# dict of unique chars in doc and the number of its occurrence
-chKeys = {}
-for c in text:
-    if c != 10: chKeys[c] = chKeys.get(c, 0) + 1
+def main():
+    print HEADER_HTML
 
-keys = chKeys.keys()
-keys.sort()
-
-relDataFile = file(bundleLibPath + "relatedChars.txt", 'r')
-relData = relDataFile.read().decode("UTF-8").splitlines()
-relDataFile.close()
-groups = SeqDict()    # groups of related chars
-unrel  = []    # list of chars which are not in groups
-
-for ch in keys:
-    wch = wunichr(ch)
-    for index, group in enumerate(relData):
-        if group.__contains__(wch):
+    # dict of unique chars in doc and the number of its occurrence
+    chKeys = {}
+    for l in sys.stdin:
+        for c in codepoints(l):
             try:
-                groups[index].append(ch)
+                chKeys[c] += 1
             except KeyError:
-                groups[index] = []
-                groups[index].append(ch)
-            break
-    else:
-        unrel.append(ch)
+                chKeys[c] = 1
 
-print "<table border=1>"
-print "<tr><th>Character</th><th>Occurrences</th><th>UCS</th><th>Unicode Block</th><th>Unicode Name</th></tr>"
+    chKeys.pop(10) # Avoid displaying newlines
 
-total = distinct = 0
+    keys = chKeys.keys()
+    keys.sort()
 
-# get Unicode names of all chars in doc; if not in Unicodedata, get them from UnicodeData.txt.zip
-regExp = data = {}
-for ch in keys:
-    try:
-        data["%04X" % int(ch)] = unicodedata.name(wunichr(ch), "<")
-    except ValueError:
-        regExp["%04X" % int(ch)] = 1
-    except TypeError:
-        regExp["%04X" % int(ch)] = 1
+    relDataFile = file(bundleLibPath + "relatedChars.txt", 'r')
+    relData = relDataFile.read().decode("UTF-8").splitlines()
+    relDataFile.close()
+    groups = SeqDict()    # groups of related chars
+    unrel  = []    # list of chars which are not in groups
 
-if regExp:
-    UnicodeData = os.popen("zgrep -E '^(" + "|".join(regExp.keys()) + ");' '" + \
-                    bundleLibPath + "UnicodeData.txt.zip'").read().decode("UTF-8")
-    for c in UnicodeData.splitlines():
-        uniData = c.strip().split(';')
-        if len(uniData) > 1: data[uniData[0]] = uniData[1]
+    for ch in keys:
+        wch = wunichr(ch)
+        for index, group in enumerate(relData):
+            if group.__contains__(wch):
+                try:
+                    groups[index].append(ch)
+                except KeyError:
+                    groups[index] = []
+                    groups[index].append(ch)
+                break
+        else:
+            unrel.append(ch)
 
-bgclasses = ['tr2', 'tr1']
 
-for (clsstr, gr) in itertools.izip(itertools.cycle(bgclasses), groups.keys()):
-    for c in groups[gr]:
+    print "<table border=1><tr>"
+    print "<th>Character</th><th>Occurrences</th><th>UCS</th><th>Unicode Block</th><th>Unicode Name</th>"
+    print "</tr><tbody id='theTable'>"
+
+    total    = 0
+    distinct = 0
+    regExp   = {}
+    data     = {}
+
+    # get Unicode names of all chars in doc; if not in Unicodedata, get them from UnicodeData.txt.zip
+    for ch in keys:
+        try:
+            data["%04X" % int(ch)] = unicodedata.name(wunichr(ch))
+        except ValueError:
+            regExp["%04X" % int(ch)] = 1
+        except TypeError:
+            regExp["%04X" % int(ch)] = 1
+
+    if regExp:
+        UnicodeData = os.popen("zgrep -E '^(" + "|".join(regExp.keys()) + ");' '" + \
+                        bundleLibPath + "UnicodeData.txt.zip'").read().decode("UTF-8")
+        for c in UnicodeData.splitlines():
+            uniData = c.strip().split(';')
+            if len(uniData) > 1: data[uniData[0]] = uniData[1]
+
+    bgclasses = ['tr2', 'tr1']
+
+    for (clsstr, gr) in itertools.izip(itertools.cycle(bgclasses), groups.keys()):
+        for c in groups[gr]:
+            total += chKeys[c]
+            distinct += 1
+            t = wunichr(c)
+            name = data.get("%04X" % int(c), getNameForRange(c) + "-%04X" % int(c))
+            # I have no idea why name can be 1 ??
+            if name == 1 or name[0] == '<': name = getNameForRange(c) + "-%04X" % int(c)
+            if "COMBINING" in name: t = u"◌" + t
+            # if groups[gr] has only one element shows up it as not grouped; otherwise bgcolor alternates
+            if len(groups[gr]) == 1: clsstr = ''
+            print "<tr class='" + clsstr + "'><td class='a'>", \
+                    t, "</td><td class='a'>", chKeys[c], "</td><td>", \
+                    "U+%04X" % (int(c)), "</td><td>", getBlockName(c), "</td><td>", name, "</tr>"
+
+    for c in unrel:
         total += chKeys[c]
         distinct += 1
         t = wunichr(c)
         name = data.get("%04X" % int(c), getNameForRange(c) + "-%04X" % int(c))
-        # I have no idea why name can be 1 ??
         if name == 1 or name[0] == '<': name = getNameForRange(c) + "-%04X" % int(c)
         if "COMBINING" in name: t = u"◌" + t
-        # if groups[gr] has only one element shows up it as not grouped; otherwise bgcolor alternates
-        if len(groups[gr]) == 1: clsstr = ''
-        print "<tr class='" + clsstr + "'><td class='a'>", \
-                t, "</td><td class='a'>", chKeys[c], "</td><td>", \
-                "U+%04X" % (int(c)), "</td><td>", getBlockName(c), "</td><td>", name, "</tr>"
+        print "<tr><td class='a'>", t, "</td><td class='a'>", chKeys[c], \
+                "</td><td>", "U+%04X" % (int(c)), "</td><td>", \
+                getBlockName(c), "</td><td>", name, "</tr>"
 
-for c in unrel:
-    total += chKeys[c]
-    distinct += 1
-    t = wunichr(c)
-    name = data.get("%04X" % int(c), getNameForRange(c) + "-%04X" % int(c))
-    if name == 1 or name[0] == '<': name = getNameForRange(c) + "-%04X" % int(c)
-    if "COMBINING" in name: t = u"◌" + t
-    print "<tr><td class='a'>", t, "</td><td class='a'>", chKeys[c], \
-            "</td><td>", "U+%04X" % (int(c)), "</td><td>", \
-            getBlockName(c), "</td><td>", name, "</tr>"
+    print "</table>"
 
-print "</table>"
+    if total < 2:
+        pl = ""
+    else:
+        pl = "s"
 
-# print str(time.time() - ts)
+    print '<h2><a name="inventory">Character Inventory</a></h2>'
+    print "<p><i>%d character%s total, %d distinct</i></p>" % (total, pl, distinct)
 
-print "<p style='font-size:8pt;'><i>"
+    print '<table id="character-inventory">'
+    print '<tr>'
+    i = 0
+    for c in keys:
+        if i > 0 and i % 25 == 0:
+            print '</tr><tr>'
+        print '<td>', wunichr(c), '</td>',
+        i += 1
+    print '</tr>'
+    print "</table>"
+    print "<p></p>"
+    print "</body></html>"
 
-if total < 2:
-    pl = ""
-else:
-    pl = "s"
-
-print str(total) + " character%s in total (without '\\n')<br>" % pl
-print str(distinct) + " distinct characters</i></p>"
-
-print "</body></html>"
+if __name__ == "__main__":
+    main()

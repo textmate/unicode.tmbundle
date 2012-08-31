@@ -12,10 +12,7 @@ sys.stdin  = codecs.getreader('utf-8')(sys.stdin)
 
 bundleLibPath = os.environ["TM_BUNDLE_SUPPORT"] + "/lib/"
 
-text = list(codepoints(sys.stdin.read()))
-if not text: sys.exit(200)
-
-print """<html>
+HEADER_HTML = """<html>
 <head><title>Character Inventory</title>
 <script type='text/javascript'>//<![CDATA[
 function sortTable2(col) {
@@ -94,81 +91,156 @@ function normalizeString(s) {
 }
 //]]></script>
 <style type='text/css'>
-th {
-font-size:8pt;
-text-align:left;
-}
-table {border:1px solid #silver;border-collapse: collapse;}
-td {padding:1mm;}
-.a {
-text-align:center;
-}
-.b {
-text-align:center;
-cursor:pointer;
-}
+
+    body {
+        font-size: 12pt;
+    }
+    
+    th {
+        text-align:left;
+        padding: 1px 3px;
+        background-color: #aaa;
+        color: #fff;
+        cursor:pointer;
+    }
+
+    table {
+        border:1px solid #silver;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #eee;
+    }
+    
+    col {
+        width: 15%;
+    }
+
+    col.name {
+        width: 40%;
+    }
+
+    td {
+        padding: 1px 3px;
+    }
+
+    tr {
+        height: 2em;
+    }
+    .a {
+        text-align:center;
+    }
+
+    .b {
+        text-align:center;
+        cursor:pointer;
+    }
+
+    table#character-inventory {
+        width: auto;
+        margin: auto;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    table#character-inventory td {
+        border: solid black 1px;
+        width: 2em;
+        height: 2em;
+    }
 </style>
 </head>
 <body>
 """
 
-chKeys = {}
-for c in text:
-    try:
-        chKeys[c] += 1
-    except KeyError:
-        chKeys[c] = 1
+def main():
+    print HEADER_HTML
 
-keys = chKeys.keys()
-keys.sort()
+    # dict of unique chars in doc and the number of its occurrence
+    chKeys = {}
+    for l in sys.stdin:
+        for c in codepoints(l):
+            try:
+                chKeys[c] += 1
+            except KeyError:
+                chKeys[c] = 1
+
+    chKeys.pop(10) # Avoid displaying newlines
+
+    keys = chKeys.keys()
+    keys.sort()
 
 
-print "<table border=1><tr>"
+    print "<table border=1><tr>"
 
-if len(keys)<400:
-    print "<th><a href='' onclick='return sortTable2(0)'>Character</a></th><th><a href='' onclick='return sortTable2(1)'>Occurrences</a></th><th><a href='' onclick='return sortTable2(0)'>UCS</a></th><th><a href='' onclick='return sortTable2(3)'>Unicode Block</a></th><th><a href='' onclick='return sortTable2(4)'>Unicode Name</a></th>"
-else:
-    print "<th>Character</th><th>Occurrences</th><th>UCS</th><th>Unicode Block</th><th>Unicode Name</th>"
+    if len(keys)<400:
+        print "\
+        <th><span title='click to sort' onclick='return sortTable2(0)'>Character</span></th> \
+        <th><span title='click to sort' onclick='return sortTable2(1)'>Occurrences</span></th> \
+        <th><span title='click to sort' onclick='return sortTable2(0)'>UCS</span></th> \
+        <th><span title='click to sort' onclick='return sortTable2(3)'>Unicode Block</span></th> \
+        <th><span title='click to sort' onclick='return sortTable2(4)'>Unicode Name</span></th>"
+    else:
+        print "<th>Character</th><th>Occurrences</th><th>UCS</th><th>Unicode Block</th><th>Unicode Name</th>"
 
-print "</tr><tbody id='theTable'>"
-#len(text) and len(keys) don't work caused by uni chars > U+FFFF
-total = 0
-distinct = 0
-regExp = {}
-data = {}
-for ch in keys:
-    try:
-        data["%04X" % int(ch)] = unicodedata.name(wunichr(ch))
-    except ValueError:
-        regExp["%04X" % int(ch)] = 1
-    except TypeError:
-        regExp["%04X" % int(ch)] = 1
-
-UnicodeData = os.popen("zgrep -E '^(" + "|".join(regExp.keys()) + ");' '" + bundleLibPath + "UnicodeData.txt.zip'").read().decode("UTF-8")
-
-for c in UnicodeData.splitlines():
-    uniData = c.strip().split(';')
-    if len(uniData) > 1: data[uniData[0]] = uniData[1]
-
-for c in keys:
-    if c != 10:
-        total += chKeys[c]
-        distinct += 1
-        t = wunichr(c)
+    print "</tr><tbody id='theTable'>"
+    #len(text) and len(keys) don't work caused by uni chars > U+FFFF
+    total = 0
+    distinct = 0
+    regExp = {}
+    data = {}
+    for ch in keys:
         try:
-            name = data["%04X" % int(c)]
-        except KeyError:
-            name = getNameForRange(c) + "-%04X" % int(c)
-        if name[0] == '<': name = getNameForRange(c) + "-%04X" % int(c)
-        if "COMBINING" in name: t = u"◌" + t
-        print "<tr><td class='a'>", t, "</td><td class='a'>", chKeys[c], "</td><td>", "U+%04X" % (int(c)), "</td><td>", getBlockName(c), "</td><td>", name, "</tr>"
+            data["%04X" % int(ch)] = unicodedata.name(wunichr(ch))
+        except ValueError:
+            regExp["%04X" % int(ch)] = 1
+        except TypeError:
+            regExp["%04X" % int(ch)] = 1
 
-print "</tbody></table>"
 
-print "<p style='font-size:8pt;'><i>"
-pl = "s"
-if total < 2: pl = ""
-print str(total) + " character%s in total (without '\\n')<br>" % pl
-print str(distinct) + " distinct characters</i></p>"
+    UnicodeData = os.popen("zgrep -E '^(" + "|".join(regExp.keys()) + ");' '" + bundleLibPath + "UnicodeData.txt.zip'").read().decode("UTF-8")
 
-print "</body></html>"
+    for c in UnicodeData.splitlines():
+        uniData = c.strip().split(';')
+        if len(uniData) > 1: data[uniData[0]] = uniData[1]
+
+    for c in keys:
+        if c != 10:
+            total += chKeys[c]
+            distinct += 1
+            t = wunichr(c)
+            try:
+                name = data["%04X" % int(c)]
+            except KeyError:
+                name = getNameForRange(c) + "-%04X" % int(c)
+            if name[0] == '<': name = getNameForRange(c) + "-%04X" % int(c)
+            if "COMBINING" in name: t = u"◌" + t
+            print "<tr><td class='a'>", t, "</td><td class='a'>", chKeys[c], "</td><td>", "U+%04X" % (int(c)), "</td><td>", getBlockName(c), "</td><td>", name, "</tr>"
+
+    print "</tbody></table>"
+
+    if total < 2:
+        pl = ""
+    else:
+        pl = "s"
+
+    print '<h2><a name="inventory">Character Inventory</a></h2>'
+    print "<p><i>%d character%s total, %d distinct</i></p>" % (total, pl, distinct)
+
+    print '<table id="character-inventory">'
+    print '<tr>'
+    i = 0
+    for c in keys:
+        if i > 0 and i % 25 == 0:
+            print '</tr><tr>'
+        print '<td>', wunichr(c), '</td>',
+        i += 1
+    print '</tr>'
+    print "</table>"
+    print "<p></p>"
+    print "</body></html>"
+
+if __name__ == "__main__":
+    main()
