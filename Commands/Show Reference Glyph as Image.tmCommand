@@ -42,7 +42,7 @@ if "TM_SELECTED_TEXT" in os.environ:
     &lt;head&gt; \
     &lt;title&gt;www.unicode.org &amp;mdash; Reference Glyphs&lt;/title&gt; \
     &lt;/head&gt; \
-    &lt;body onclick='window.close();'&gt; \
+    &lt;body&gt; \
     "
     for c in codepoints(unicode(os.environ["TM_SELECTED_TEXT"], "UTF-8")):
         charcode = "%04X" % c
@@ -67,13 +67,8 @@ else:
     &lt;html&gt; \
     &lt;head&gt; \
     &lt;title&gt;www.unicode.org &amp;mdash; Reference Glyph&lt;/title&gt; \
-    &lt;script type='text/javascript'&gt; \
-    function init() { \
-    window.resizeTo(350,110); \
-    } \
-    &lt;/script&gt; \
     &lt;/head&gt; \
-    &lt;body onclick='window.close();'&gt; \
+    &lt;body&gt; \
     &lt;center&gt; \
     &lt;img src='http://www.unicode.org/cgi-bin/refglyph?24-" + charcode + "'&gt; \
     "
@@ -83,18 +78,27 @@ else:
     &lt;script type='text/javascript'&gt;window.onload = init;&lt;/script&gt; \
     &lt;/body&gt; \
     &lt;/html&gt; \
-    "</string>
+    "
+</string>
 	<key>fallbackInput</key>
 	<string>none</string>
 	<key>input</key>
 	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
 	<key>keyEquivalent</key>
 	<string>^~@u</string>
 	<key>name</key>
 	<string>Show Reference Glyph(s) as Image</string>
-	<key>output</key>
-	<string>showAsHTML</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
 	<key>uuid</key>
 	<string>54242A63-3362-4196-BCA7-6631774FD8C8</string>
+	<key>version</key>
+	<string>2</string>
 </dict>
 </plist>
