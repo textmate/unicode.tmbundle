@@ -117,7 +117,10 @@ def main():
             except KeyError:
                 chKeys[c] = 1
 
-    chKeys.pop(10) # Avoid displaying newlines
+    try:
+        chKeys.pop(10) # Avoid displaying newlines
+    except:
+        1
 
     keys = chKeys.keys()
     keys.sort()
