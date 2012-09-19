@@ -8,6 +8,23 @@ You can install this bundle in TextMate by opening the preferences and going to 
 * [Commit Styleguide](http://kb.textmate.org/commit_styleguide) — _before you send a pull request_
 * [Writing Bug Reports](http://kb.textmate.org/writing_bug_reports) — _before you report an issue_
 
+# Description
+
+This bundle contain commands, scripts, etc. to deal with general Unicode resp. non-ASCII related tasks such as: 
+
+* Unicode normalizations
+* conversion to similar characters
+* Unicode/IPA character inserting (incl. search facilities)
+* Displaying of Unicode properties (incl. Japanese and Chinese characters)
+* conversions of Japanese and Chinese characters
+* highlighting of non-ASCII characters
+* displaying the character inventory of the current document
+* and others
+
+# Version
+
+2.0 – Sep 19 2012 – Hans-Jörg Bibiko
+
 # License
 
 If not otherwise specified (see below), files in this repository fall under the following license:
