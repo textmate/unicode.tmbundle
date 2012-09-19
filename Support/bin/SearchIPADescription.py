@@ -80,7 +80,7 @@ for i in suggestions.split('\n'):
                 uname = ""
         t = ""
         if "COMBINING" in uname: t = u"<small>◌</small>"
-        print "<span onclick='insertChar(\"%s\")' onmouseout='clearName()'; onmouseover='showName(\"U+%s : %s<br>%s\")' class='char'>%s%s</span> " % (hexlify(c.encode("UTF-8")),"%04X" % wuniord(c), n, uname, t, c)
+        print "<span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName(\"U+%s : %s<br>%s\")' class='char'>%s%s</span> " % ("%04X" % wuniord(c), n, uname, t, c)
     else:
         if c == u"̪͆": t = u"<small>◌</small>"
         print "<span onclick='insertChar(\"%s\")' onmouseout='clearName()'; onmouseover='showName(\"%s\")' class='char'>%s%s</span> " % (hexlify(c.encode("UTF-8")), n, t, c)

@@ -55,7 +55,7 @@ for i in suggestions.split('\n'):
     c, n = i.split('\t')
     t = ""
     if "COMBINING" in n or "HEBREW MARK" in n or "HEBREW ACCENT" in n or "HEBREW POINT" in n or "LAO TONE" in n or "LAO VOWEL" in n or "LAO SEMIVOWEL" in n or "LAO CAN" in n or "LAO NIG" in n: t = u"<small>◌</small>"
-    print "<span onclick='insertChar(\"%s\")' onmouseout='clearName()'; onmouseover='showName(\"U+%s : %s\")' class='char'>%s%s</span> " % (hexlify(c.encode("UTF-8")),"%04X" % wuniord(c), n, t, c)
+    print "<span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName(\"U+%s : %s\")' class='char'>%s%s</span> " % ("%04X" % wuniord(c), n, t, c)
 
 pl = ""
 if cnt > 1: pl = "es"

@@ -5,42 +5,53 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>[[ -e /tmp/TM_db.busy ]] &amp;&amp; rm - f /tmp/TM_db.busy
+	<string>#!/bin/bash
+source "$TM_SUPPORT_PATH/lib/bash_init.sh" # might not be necessary
+[[ -e /tmp/TM_db.busy ]] &amp;&amp; rm - f /tmp/TM_db.busy
 cat &lt;&lt;-HTML
 &lt;html&gt;
 	&lt;head&gt;
 	&lt;title&gt;Insert Unicode Character&lt;/title&gt;
 	&lt;style type="text/css"&gt; 
 		.res {
-			font-family:Monaco;
-			font-size:15pt;
+			font-family:'Charis SIL','Lucida Grande','Helvetica','Tahoma';
+			font-size:16pt;
 			line-height:40pt;
 		}
+		.buttonInAct {
+			color:#555555;
+		}
+		.buttonAct {
+			color:#000000;
+		}
 		.names {
-			font-size:9pt;
-			color:#eee;
-			background:#de7008;
-			z-index: 105;
+			font-size:10pt;
+			color:#fff;
+			background:#888;
+			z-index:105;
 			text-align:center;
-			position:fixed;
 			bottom:0px;
+			position:fixed;
 			left:0px;
 			width:100%;
-			height:25px;
-			padding:5mm;
+			height:34px;
+			padding:2mm;
 			font-weight: bold;
 		}
 		.head {
 			font-size:10pt;
-			color:#eee;
-			background:#de7008;
+			font-family:'Charis SIL','Lucida Grande','Helvetica','Tahoma';
+			color:#fff;
+			background:#888;
 			z-index: 106;
 			text-align:center;
 			position:fixed;
 			top:0px;
 			left:0px;
 			width:100%;
-			padding:5mm;
+			min-width:580px;
+			height:24px;
+			padding:1mm;
 		}
 		.char {
 			border:1px dotted silver;
@@ -66,7 +77,8 @@ cat &lt;&lt;-HTML
 		function startSearchTimed() {
 			var w = (document.getElementById("where").checked) ? 'full':'word';
 			term = term.replace(/^\s+|\s+$/g,"");
-			term = term.replace(/^ {2,}/g," ");					if ((oldterm != term || ft==1) &amp;&amp; term.length &gt; 0) {
+			term = term.replace(/^ {2,}/g," ");
+			if ((oldterm != term || ft==1) &amp;&amp; term.length &gt; 0) {
 				oldterm = term
 				TextMate.isBusy = true;
 				outStr = "";
@@ -77,13 +89,11 @@ cat &lt;&lt;-HTML
 				TextMate.isBusy = false;
 			}
 		}
-		function insertChar(c) {
-			cmd  = "echo -en 'tell app \"TextMate\" to insert «data utf8" + c + "» as Unicode text'";
-			cmd += "| iconv -f UTF-8 -t MACROMAN | osascript --  &amp;";
-			TextMate.system(cmd, null);
+		function insertChar(elt) {
+			TextMate.system("\"$DIALOG\" x-insert --text '"+ elt.innerText.replace('◌','') + "'", null);
 		}
 		function output(str) {
-              outStr += str;
+			outStr += str;
 			document.getElementById("result").innerHTML = outStr;
 		}
 		function showName(str) {
@@ -113,7 +123,8 @@ cat &lt;&lt;-HTML
 &lt;div id='uniname' class='names'&gt;&amp;nbsp;&lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-HTML</string>
+HTML
+</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>
