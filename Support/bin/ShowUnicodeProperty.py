@@ -44,7 +44,7 @@ def main():
 
     if os_v == "10":
     	source1 = "/System/Library/Input Methods/CharacterPalette.app/Contents/Frameworks/CharacterPaletteFramework.framework/Resources/kanji.db"
-    elif os_v == "11":
+    elif os_v == "11" or os_v == "12" or os_v == "13":
     	source1 = "/System/Library/Input Methods/CharacterPalette.app/Contents/Resources/CharacterDB.sqlite3"
     else:
     	source1 = "/System/Library/Components/CharacterPalette.component/Contents/SharedSupport/\
@@ -84,7 +84,7 @@ def main():
     lastCharUCShexCode = "%04X" % lastCharDecCode
 
     UnicodeData = os.popen("zgrep '^" + lastCharUCShexCode + ";' '" + bundleLibPath + 
-                            "UnicodeData.txt.zip'").read().decode("utf-8")
+                            "UnicodeData.txt.gz'").read().decode("utf-8")
 
     name = ""
 
@@ -111,13 +111,6 @@ def main():
     if part: outDict["Related to"] = part
 
     if "CJK" in name and ("IDEO" in name or "Ideo" in name):
-        # get CJK data from Apple's internal plist
-        # if os_v == "11":
-        #     # cmd = "plutil -convert xml1 -o /tmp/_hanchar.plist '" + source2 + "' | grep -B 9 '" + char + "' '"
-        #     # os.system("plutil -convert xml1 -o /tmp/_hanchar.plist '" + source2 + "'")
-        #     # rr = plistlib.readPlist('/tmp/_hanchar.plist')
-        #     # print >>sys.stderr, rr[]
-        # else:
         cmd = "zgrep -F '" + char + ",' '" + source2 + "'"
         gdata = os.popen(cmd.encode("UTF-8")).read().decode("UTF-8")
         if len(gdata) > 0:
