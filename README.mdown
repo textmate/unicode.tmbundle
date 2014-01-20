@@ -23,7 +23,7 @@ This bundle contain commands, scripts, etc. to deal with general Unicode resp. n
 
 # Version
 
-2.0 – Sep 19 2012 – Hans-Jörg Bibiko
+2.1 – Jan 16 2014 – Hans-Jörg Bibiko
 
 # License
 
