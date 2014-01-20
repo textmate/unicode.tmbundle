@@ -69,7 +69,7 @@ def getUnicodeName(dec):
     for c in dec:
         hexCode = "%04X" % int(c)
         regExp.append(hexCode)
-    UnicodeData = os.popen("zgrep -E '^(" + "|".join(regExp) + ");' '" + bundleLibPath + "UnicodeData.txt.zip'").read().decode("UTF-8")
+    UnicodeData = os.popen("zgrep -E '^(" + "|".join(regExp) + ");' '" + bundleLibPath + "UnicodeData.txt.gz'").read().decode("UTF-8")
     data = {}
     for c in UnicodeData.split('\n'):
         uniData = c.strip().split(';')
