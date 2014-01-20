@@ -192,18 +192,14 @@ def main():
     #len(text) and len(keys) don't work caused by uni chars > U+FFFF
     total = 0
     distinct = 0
-    regExp = {}
+    regExp = []
     data = {}
-    for ch in keys:
-        try:
-            data["%04X" % int(ch)] = unicodedata.name(wunichr(ch))
-        except ValueError:
-            regExp["%04X" % int(ch)] = 1
-        except TypeError:
-            regExp["%04X" % int(ch)] = 1
 
+    for c in keys:
+        hexCode = "%04X" % int(c)
+        regExp.append(hexCode)
 
-    UnicodeData = os.popen("zgrep -E '^(" + "|".join(regExp.keys()) + ");' '" + bundleLibPath + "UnicodeData.txt.zip'").read().decode("UTF-8")
+    UnicodeData = os.popen("zgrep -E '^(" + "|".join(regExp) + ");' '" + bundleLibPath + "UnicodeData.txt.gz'").read().decode("UTF-8")
 
     for c in UnicodeData.splitlines():
         uniData = c.strip().split(';')

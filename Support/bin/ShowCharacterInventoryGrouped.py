@@ -151,24 +151,18 @@ def main():
 
     total    = 0
     distinct = 0
-    regExp   = {}
+    regExp   = []
     data     = {}
 
-    # get Unicode names of all chars in doc; if not in Unicodedata, get them from UnicodeData.txt.zip
-    for ch in keys:
-        try:
-            data["%04X" % int(ch)] = unicodedata.name(wunichr(ch))
-        except ValueError:
-            regExp["%04X" % int(ch)] = 1
-        except TypeError:
-            regExp["%04X" % int(ch)] = 1
+    for c in keys:
+        hexCode = "%04X" % int(c)
+        regExp.append(hexCode)
 
-    if regExp:
-        UnicodeData = os.popen("zgrep -E '^(" + "|".join(regExp.keys()) + ");' '" + \
-                        bundleLibPath + "UnicodeData.txt.zip'").read().decode("UTF-8")
-        for c in UnicodeData.splitlines():
-            uniData = c.strip().split(';')
-            if len(uniData) > 1: data[uniData[0]] = uniData[1]
+    UnicodeData = os.popen("zgrep -E '^(" + "|".join(regExp) + ");' '" + bundleLibPath + "UnicodeData.txt.gz'").read().decode("UTF-8")
+
+    for c in UnicodeData.splitlines():
+        uniData = c.strip().split(';')
+        if len(uniData) > 1: data[uniData[0]] = uniData[1]
 
     bgclasses = ['tr2', 'tr1']
 
