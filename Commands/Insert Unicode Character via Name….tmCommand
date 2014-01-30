@@ -117,7 +117,7 @@ cat &lt;&lt;-HTML
 &lt;/div&gt;
 &lt;hr/&gt;
 &lt;div id='result'&gt;
-...
+&lt;br&gt;...
 &lt;/div&gt;
 &lt;p&gt; &lt;/p&gt;&lt;p&gt; &lt;/p&gt;
 &lt;div id='uniname' class='names'&gt;&amp;nbsp;&lt;/div&gt;
