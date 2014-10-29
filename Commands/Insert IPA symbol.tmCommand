@@ -232,6 +232,7 @@ cat &lt;&lt;-HTML
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+030B : Extra high&lt;br&gt;COMBINING DOUBLE ACUTE ACCENT")' colspan=2&gt;◌̋&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+02E5 : Extra high&lt;br&gt;MODIFIER LETTER EXTRA-HIGH TONE BAR")' colspan=2&gt;˥&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+030C : Rising&lt;br&gt;COMBINING CARON")' colspan=2&gt;◌̌&lt;/td&gt;
+	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+02E9 + U+02E5 : Rising&lt;br&gt;MODIFIER LETTER EXTRA-LOW TONE BAR + MODIFIER LETTER EXTRA-HIGH TONE BAR")' colspan=2&gt;˩˥&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+2193 : Downstep (ExtIPA: ingressive airflow)&lt;br&gt;DOWNWARDS ARROW")' colspan=2&gt;↓&lt;/td&gt;
 	
 &lt;/tr&gt;
@@ -246,6 +247,7 @@ cat &lt;&lt;-HTML
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0301 : High&lt;br&gt;COMBINING ACUTE ACCENT")' colspan=2&gt;◌́&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+02E6 : High&lt;br&gt;MODIFIER LETTER HIGH TONE BAR")' colspan=2&gt;˦&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0302 : Falling&lt;br&gt;COMBINING CIRCUMFLEX ACCENT")' colspan=2&gt;◌̂&lt;/td&gt;
+	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+02E5 + U+02E9 : Falling&lt;br&gt;MODIFIER LETTER EXTRA-HIGH TONE BAR + MODIFIER LETTER EXTRA-LOW TONE BAR")' colspan=2&gt;˥˩&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+2191 : Upstep (ExtIPA: egressive airflow)&lt;br&gt;UPWARDS ARROW")' colspan=2&gt;↑&lt;/td&gt;
 	
 &lt;/tr&gt;
@@ -266,6 +268,7 @@ cat &lt;&lt;-HTML
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0304 : Mid&lt;br&gt;COMBINING MACRON")' colspan=2&gt;◌̄&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+02E7 : Mid&lt;br&gt;MODIFIER LETTER MID TONE BAR")' colspan=2&gt;˧&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+1DC4 : High rising&lt;br&gt;COMBINING MACRON-ACUTE")' colspan=2&gt;◌᷄&lt;/td&gt;
+	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+02E6 + U+02E5 : High rising&lt;br&gt;MODIFIER LETTER HIGH TONE BAR + MODIFIER LETTER EXTRA-HIGH TONE BAR")' colspan=2&gt;˦˥&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+2197 : Global rise&lt;br&gt;NORTH EAST ARROW")' colspan=2&gt;↗&lt;/td&gt;
 	
 &lt;/tr&gt;
@@ -279,6 +282,7 @@ cat &lt;&lt;-HTML
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0300 : Low&lt;br&gt;COMBINING GRAVE ACCENT")' colspan=2&gt;◌̀&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+02E8 : Low&lt;br&gt;MODIFIER LETTER LOW TONE BAR")' colspan=2&gt;˨&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+1DC5 : Low rising&lt;br&gt;COMBINING GRAVE-MACRON")' colspan=2&gt;◌᷅&lt;/td&gt;
+	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+02E9 + U+02E8 : Low rising&lt;br&gt;MODIFIER LETTER EXTRA-LOW TONE BAR + MODIFIER LETTER LOW TONE BAR")' colspan=2&gt;˩˨&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+2198 : Global fall&lt;br&gt;SOUTH EAST ARROW")' colspan=2&gt;↘&lt;/td&gt;
 	
 &lt;/tr&gt;
@@ -299,6 +303,7 @@ cat &lt;&lt;-HTML
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+030F : Extra low&lt;br&gt;COMBINING DOUBLE GRAVE ACCENT")' colspan=2&gt;◌̏&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+02E9 : Extra low&lt;br&gt;MODIFIER LETTER EXTRA-LOW TONE BAR")' colspan=2&gt;˩&lt;/td&gt;
 	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+1DC8 : Rising-falling&lt;br&gt;COMBINING GRAVE-ACUTE-GRAVE")' colspan=2&gt;◌᷈&lt;/td&gt;
+	&lt;td class='tt1' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+02E7 + U+02E6 + U+02E7 : Rising-falling&lt;br&gt;MODIFIER LETTER MID TONE BAR + MODIFIER LETTER HIGH TONE BAR + MODIFIER LETTER MID TONE BAR")' colspan=2&gt;˧˦˧&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 	&lt;td class='rot90'&gt;&lt;/td&gt;
@@ -333,6 +338,18 @@ cat &lt;&lt;-HTML
 	&lt;td class='tt' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+2016 : Major (intonation) group&lt;br&gt;DOUBLE VERTICAL LINE")'&gt;‖&lt;/td&gt;
 	&lt;td class='tt' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+002E : Syllable break&lt;br&gt;FULL STOP")'&gt;.&lt;/td&gt;
 	&lt;td class='tt' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+203F : Linking (absence of a break)&lt;br&gt;UNDERTIE")'&gt;‿&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+	&lt;td&gt;&lt;/td&gt;
+	&lt;td&gt;&lt;/td&gt;
+	&lt;td&gt;&lt;/td&gt;
+	&lt;td&gt;&lt;/td&gt;
+	&lt;td&gt;&lt;/td&gt;
+	&lt;td&gt;&lt;/td&gt;
+	&lt;td&gt;&lt;/td&gt;
+	&lt;td&gt;&lt;/td&gt;
+	&lt;td class='tt' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0323 : Syllable break&lt;br&gt;COMBINING DOT BELOW")'&gt;◌̣&lt;/td&gt;
+	&lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/center&gt;
@@ -505,7 +522,10 @@ cat &lt;&lt;-HTML
 &lt;h3&gt;Diacritics&lt;/h3&gt;
 &lt;table&gt;
 &lt;tr&gt;
-	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0325 : Voiceless&lt;br&gt;COMBINING RING BELOW")'&gt;◌̥&lt;/td&gt;
+	&lt;td class='tt2'&gt;
+		&lt;span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0325 : Voiceless&lt;br&gt;COMBINING RING BELOW")'&gt;◌̥&lt;/span&gt;
+		&lt;span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+030A : Voiceless&lt;br&gt;COMBINING RING ABOVE")'&gt;◌̊&lt;/span&gt;
+	&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0324 : Breathy voiced&lt;br&gt;COMBINING DIAERESIS BELOW")'&gt;◌̤&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+031D : Raised&lt;br&gt;COMBINING UP TACK BELOW")'&gt;◌̝&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+032A : Dental&lt;br&gt;COMBINING BRIDGE BELOW")'&gt;◌̪&lt;/td&gt;
@@ -529,11 +549,17 @@ cat &lt;&lt;-HTML
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0362 : Sliding articulation&lt;br&gt;COMBINING DOUBLE RIGHTWARDS ARROW BELOW")'&gt;◌͢&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0339 : More rounded&lt;br&gt;COMBINING RIGHT HALF RING BELOW")'&gt;◌̹&lt;/td&gt;
+	&lt;td class='tt2'&gt;
+		&lt;span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0339 : More rounded&lt;br&gt;COMBINING RIGHT HALF RING BELOW")'&gt;◌̹&lt;/span&gt;
+		&lt;span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0357 : More rounded&lt;br&gt;COMBINING RIGHT HALF RING ABOVE")'&gt;◌͗&lt;/span&gt;
+	&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+033C : Linguolabial&lt;br&gt;COMBINING SEAGULL BELOW")'&gt;◌̼&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+031E : Lowered&lt;br&gt;COMBINING DOWN TACK BELOW")'&gt;◌̞&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+033B : Laminal&lt;br&gt;COMBINING SQUARE BELOW")'&gt;◌̻&lt;/td&gt;
-	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+033D : Mid-centralized&lt;br&gt;COMBINING X ABOVE")'&gt;◌̽&lt;/td&gt;
+	&lt;td class='tt2'&gt;
+		&lt;span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+033D : Mid-centralized&lt;br&gt;COMBINING X ABOVE")'&gt;◌̽&lt;/span&gt;
+		&lt;span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0353 : Mid-centralized&lt;br&gt;COMBINING X BELOW")'&gt;◌͓&lt;/span&gt;
+	&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+02E0 : Velarized&lt;br&gt;MODIFIER LETTER SMALL GAMMA")'&gt;◌ˠ&lt;/td&gt;
 	&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("Interdental/bidental")'&gt;◌̪͆&lt;/td&gt;
@@ -542,8 +568,14 @@ cat &lt;&lt;-HTML
 	&lt;td class='tt0'&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+031C : Less rounded&lt;br&gt;COMBINING LEFT HALF RING BELOW")'&gt;◌̜&lt;/td&gt;
-	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0329 : Syllabic&lt;br&gt;COMBINING VERTICAL LINE BELOW")'&gt;◌̩&lt;/td&gt;
+	&lt;td class='tt2'&gt;
+		&lt;span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+031C : Less rounded&lt;br&gt;COMBINING LEFT HALF RING BELOW")'&gt;◌̜&lt;/span&gt;
+		&lt;span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0351 : Less rounded&lt;br&gt;COMBINING LEFT HALF RING ABOVE")'&gt;◌͑&lt;/span&gt;
+	&lt;/td&gt;
+	&lt;td class='tt2'&gt;
+		&lt;span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0329 : Syllabic&lt;br&gt;COMBINING VERTICAL LINE BELOW")'&gt;◌̩&lt;/span&gt;
+		&lt;span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+030D : Syllabic&lt;br&gt;COMBINING VERTICAL LINE ABOVE")'&gt;◌̍&lt;/span&gt;
+	&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+02D5 : Lowered&lt;br&gt;MODIFIER LETTER DOWN TACK")'&gt;◌˕&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+035C : Affricate or double articulation&lt;br&gt;COMBINING DOUBLE BREVE BELOW")'&gt;◌͜&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0334 : Velarized or pharyngealized&lt;br&gt;COMBINING TILDE OVERLAY")'&gt;◌̴&lt;/td&gt;
@@ -556,7 +588,10 @@ cat &lt;&lt;-HTML
 &lt;/tr&gt;
 &lt;tr&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+031F : Advanced&lt;br&gt;COMBINING PLUS SIGN BELOW")'&gt;◌̟&lt;/td&gt;
-	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+032F : Non-syllabic&lt;br&gt;COMBINING INVERTED BREVE BELOW")'&gt;◌̯&lt;/td&gt;
+	&lt;td class='tt2'&gt;
+		&lt;span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+032F : Non-syllabic&lt;br&gt;COMBINING INVERTED BREVE BELOW")'&gt;◌̯&lt;/span&gt;
+		&lt;span onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0311 : Non-syllabic&lt;br&gt;COMBINING INVERTED BREVE")'&gt;◌̑&lt;/span&gt;
+	&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0318 : Advanced tongue root&lt;br&gt;COMBINING LEFT TACK BELOW")'&gt;◌̘&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+0361 : Affricate or double articulation&lt;br&gt;COMBINING DOUBLE INVERTED BREVE")'&gt;◌͡&lt;/td&gt;
 	&lt;td class='tt2' onclick='insertChar(this)' onmouseout='clearName()'; onmouseover='showName("U+031A : No audible release&lt;br&gt;COMBINING LEFT ANGLE ABOVE")'&gt;◌̚&lt;/td&gt;
@@ -637,13 +672,21 @@ HTML
 </string>
 	<key>input</key>
 	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
 	<key>keyEquivalent</key>
 	<string>^~@i</string>
 	<key>name</key>
 	<string>Insert IPA symbol…</string>
-	<key>output</key>
-	<string>showAsHTML</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
 	<key>uuid</key>
 	<string>9A799A30-82FC-40A0-AAD4-EF5DA3A07B49</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>

@@ -39,7 +39,9 @@ u	Close back rounded vowel
 ˩	Extra low
 ˧	Mid
 ̌	Rising
+˩˥	Rising
 ̂	Falling
+˥˩	Falling
 ↑	Upstep (ExtIPA: egressive airflow)
 ↘	Global fall
 ↗	Global rise
@@ -197,9 +199,13 @@ w	Voiced labial-velar approximant
 ⱱ	Voiced labiodental flap
 ᶹ	Labiodentalized
 ᷄	High rising
+˦˥	High rising
 ᷅	Low rising
+˩˨	Low rising
 ᷈	Rising-falling
+˧˦˧	Rising-falling
 .	Syllable break
+̣	Syllable break
 \	Reiterated articulation
 ˭	Unaspirated
 ₍	Initial partial
