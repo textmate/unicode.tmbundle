@@ -156,7 +156,7 @@ cat &lt;&lt;-HTML
 			}
 		}
 		function insertChar(elt) {
-			TextMate.system("\"$DIALOG\" x-insert --text '"+ elt.innerText.replace('◌','') + "'", null);
+			TextMate.system("\"$DIALOG\" x-insert --text '"+ elt.innerText.replace('◌','').replace(/ /g,'') + "'", null);
 		}
 		function output(str) {
               outStr += str;
