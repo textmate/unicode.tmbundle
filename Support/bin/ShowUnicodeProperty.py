@@ -44,7 +44,7 @@ def main():
 
     if os_v == "10":
     	source1 = "/System/Library/Input Methods/CharacterPalette.app/Contents/Frameworks/CharacterPaletteFramework.framework/Resources/kanji.db"
-    elif (os_v > "10" and os_v < "18"):
+    elif (os_v > "10" and os_v < "19"):
     	source1 = "/System/Library/Input Methods/CharacterPalette.app/Contents/Resources/CharacterDB.sqlite3"
     else:
     	source1 = "/System/Library/Components/CharacterPalette.component/Contents/SharedSupport/\
