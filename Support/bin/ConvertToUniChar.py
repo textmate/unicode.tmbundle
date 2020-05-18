@@ -76,7 +76,7 @@ for ch in suggestions:
 
 # add Unicode names from 5.1 if desired
 if regExp:
-    UnicodeData = os.popen("zgrep -E '^(" + "|".join(regExp.keys()) + ");' '" + bundleLibPath + "UnicodeData.txt.zip'").read().decode("UTF-8")
+    UnicodeData = os.popen("zgrep -E '^(" + "|".join(regExp.keys()) + ");' '" + bundleLibPath + "UnicodeData.txt.gz'").read().decode("UTF-8")
     if UnicodeData:
         for c in UnicodeData.split('\n'):
             uniData = c.strip().split(';')
