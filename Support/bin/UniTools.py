@@ -798,4 +798,4 @@ def getBlockName(s):
         return "Supplementary Private Use Area-A"
     elif 0x100000 <= s <= 0x10FFFF:
         return "Supplementary Private Use Area-B"
-        return "unknown"
+    return "unknown"
